@@ -5,8 +5,11 @@
 ## 二、栈、队列、优先队列、双端队列
 
 ## 三、作业
+
 ### 1.（26）删除排序数组中的重复项
+
 #### Python实现：
+
 ```python
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
@@ -19,16 +22,22 @@ class Solution:
 ```
 ``` for i in range(len(nums), 1, -1): ```
 
-这里只需要倒叙遍历到index=1，如果index=0，只有一个数的情况就会把这个数也弹出去：如图：
+这里只需要倒叙遍历到index=1，
 
-![26](images/26.png)
+如果index=0，即`for i in range(len(nums), 0, -1): 
+`只有一个数的情况就会把这个数也弹出去：如图：
+
+<img src="images/26.png" width=50% align="middle" />
+
 #### C++实现：
 ```C++
 
 ```
 
+---
+
 ### 2.旋转数组
-三次翻转法：时间O(n)，空间O(1)
+#### 三次翻转法：时间O(n)，空间O(1)
 ```python
 class Solution(object):
     def rotate(self, nums, k):
@@ -48,29 +57,66 @@ class Solution(object):
             nums[start], nums[end] = nums[end], nums[start]
             start, end = start + 1, end - 1
 ```
+python两个数值互换 `a, b = b, a` 原理:
+
+* Python的变量并不直接存储值，而只是引用一个内存地址，交换变量时，只是交换了引用的地址。
+
+【分析】
 ```
 input: [1,2,3,4,5,6,7,8,9] k=2
 ```
-
-第一次调转`self.reverse(nums, 0, end - k):`
+第一次调转 `self.reverse(nums, 0, end - k):`
 ```
 [7,6,5,4,3,2,1,8,9]
 ``` 
-第二次调转`self.reverse(nums, end - k + 1, end):`
+第二次调转 `self.reverse(nums, end - k + 1, end):`
 ```
 [7,6,5,4,3,2,1,9,8]
 ``` 
-第三次调转`self.reverse(nums, 0, end):`
+第三次调转 `self.reverse(nums, 0, end):`
 ```
 [8,9,1,2,3,4,5,6,7]
 ``` 
+
+---
+#### 切片法：时间O(n)，空间O(1)
+```python
+class Solution(object):
+    def rotate(self, nums, k):
+            n = len(nums)
+            k = k % n
+            nums[:] = nums[n-k:] + nums[:n-k]
+```
+【分析】
+```
+input: [1,2,3,4,5,6,7,8,9] k=2
+
+nums[n-k:]: [8,9]
+nums[:n-k]: [1,2,3,4,5,6,7]
+```
+
+
+【区别】： `nums[:] = nums[n-k:] + nums[:n-k]` 和 `nums = nums[n-k:] + nums[:n-k]` 
+
+<img src="images/189_1.png" width=50% align="left" />
+<img src="images/189_2.png" width=50% align="middle" />
+
+---
 ### 3.合并两个有序链表
+
+---
 ### 4.合并两个有序数组
+---
 ### 5.两数之和
+---
 ### 6.移动零
+---
 ### 7.加一
+---
 ### 8.设计循环双端队列
+---
 ### 9.接雨水
+---
 
 ## 四、预习题目
 ### 1.有效的字母异位词
